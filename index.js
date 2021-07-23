@@ -3,6 +3,8 @@ const app = express();
 // const Http = require('http')
 const fs = require('fs')
 const funcFs = require('fs').promises
+const chalk = require('chalk')
+const util = require('util')
 /*=========================================================*/
 // File System
 
@@ -35,6 +37,29 @@ const funcFs = require('fs').promises
 
 // fs.rmdir('./newFile',(err) => err? console.log(err) : console.log('file is deleted!'))
 
+// console.log('before making directory');
+// const newDir = fs.mkdirSync('./newDirectory');
+// console.log(`${newDir} Directory have been created`);
+
+// console.log('before making directory')
+// fs.rmdir('./LastDirectory',err => console.log(err))
+// console.log('file has been created')
+/*=========================================================*/
+// Node Modules Examples
+
+// console.log(chalk.blue("Hello world")) // color blue
+
+/*=========================================================*/
+// util Promises Examples
+
+const readdir = util.promisify(fs.readdir)
+// readdir('.').then(result=> console.log(result))
+//
+async function init() {
+ const result = await readdir('./');
+ console.log(result);
+}
+init();
 /*=========================================================*/
 // Express Module
 
