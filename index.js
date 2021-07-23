@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 // const Http = require('http')
 const fs = require('fs')
-
+const funcFs = require('fs').promises
 /*=========================================================*/
 // File System
 
@@ -31,7 +31,9 @@ const fs = require('fs')
 // });
 
 //יצירת תיקייה
-// fs.mkdir('./newFile',err => console.log(err))
+// fs.mkdir('./newFile', (err) => err? console.log(err) : console.log('file has created!'))
+
+// fs.rmdir('./newFile',(err) => err? console.log(err) : console.log('file is deleted!'))
 
 /*=========================================================*/
 // Express Module
