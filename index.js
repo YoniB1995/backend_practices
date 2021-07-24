@@ -4,6 +4,9 @@ const app = express();
 const fs = require('fs')
 const path = require('path');
 const help = require('./src/modules/routes/help');
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 // const funcFs = require('fs').promises
 // const chalk = require('chalk')
@@ -67,15 +70,22 @@ init();
 // Express Module
 
 app.get('/routeOne',(req,res)=>{
-    res.send("<h1>Hello Route One</h1>")
+    fs.readFile('students.json', (err, content) => {
+    res.write(content);
+    res.end();
+});
+})
+
+app.post('/routeOne',(req,res)=>{
+    
+    res.json(req.body)
 })
 app.get('/routeTwo',(req,res)=>{
     res.send("<h1>Hello Route Two</h1>")
 })
 
-app.get('/TestRoutes', (req, res) => {
- res.send('Hello World!');
-});
+
+
 app.post('/TestRoutes', (req, res) => {
  res.send('Hello POST!');
 })
