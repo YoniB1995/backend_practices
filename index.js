@@ -3,6 +3,7 @@ const app = express();
 // const Http = require('http')
 const fs = require('fs')
 const path = require('path');
+const help = require('./src/modules/routes/help');
 
 // const funcFs = require('fs').promises
 // const chalk = require('chalk')
@@ -72,26 +73,37 @@ app.get('/routeTwo',(req,res)=>{
     res.send("<h1>Hello Route Two</h1>")
 })
 
-app.get('/', (req, res) => {
+app.get('/TestRoutes', (req, res) => {
  res.send('Hello World!');
 });
-app.post('/', (req, res) => {
+app.post('/TestRoutes', (req, res) => {
  res.send('Hello POST!');
 })
 
-app.get('/', (req, res) => {
- fs.createReadStream(path.join('static',
+app.get('/TestHey', (req, res) => {
+ fs.createReadStream(path.join(__dirname,
 './src/static/index.html')).pipe(res);
 });
+
+
+// app.listen('3000', () => {
+//  console.log('Example app listening on port 3000!');
+// });
+
 
 app.listen('8000',()=>{
     console.log("Server is running on port 8000")
 })
 
+app.use('/help', help);
 
+//=================================================//
+// Middleware
+// const logger = require('./src/middlewares/logger');
+// app.use(logger)
 
-
-
+const morgan = require('morgan');
+app.use(morgan('common'));
 
 
 
