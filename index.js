@@ -2,8 +2,10 @@ const express = require('express')
 const app = express();
 // const Http = require('http')
 const fs = require('fs')
-const funcFs = require('fs').promises
-const chalk = require('chalk')
+const path = require('path');
+
+// const funcFs = require('fs').promises
+// const chalk = require('chalk')
 const util = require('util')
 /*=========================================================*/
 // File System
@@ -69,6 +71,18 @@ app.get('/routeOne',(req,res)=>{
 app.get('/routeTwo',(req,res)=>{
     res.send("<h1>Hello Route Two</h1>")
 })
+
+app.get('/', (req, res) => {
+ res.send('Hello World!');
+});
+app.post('/', (req, res) => {
+ res.send('Hello POST!');
+})
+
+app.get('/', (req, res) => {
+ fs.createReadStream(path.join('static',
+'./src/static/index.html')).pipe(res);
+});
 
 app.listen('8000',()=>{
     console.log("Server is running on port 8000")
