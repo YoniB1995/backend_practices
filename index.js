@@ -4,10 +4,13 @@ const app = express();
 const fs = require('fs')
 const path = require('path');
 const help = require('./src/modules/routes/help');
+const myLogger = require('./src/middlewares/logger')
+const userApp = require('./src/middlewares/access')
 const bodyParser = require('body-parser')
 
-app.use(bodyParser.json())
 
+app.use(userApp)
+// app.use(myLogger)
 // const funcFs = require('fs').promises
 // const chalk = require('chalk')
 const util = require('util')
@@ -58,48 +61,52 @@ const util = require('util')
 /*=========================================================*/
 // util Promises Examples
 
-const readdir = util.promisify(fs.readdir)
-// readdir('.').then(result=> console.log(result))
-//
-async function init() {
- const result = await readdir('./');
- console.log(result);
-}
-init();
+// const readdir = util.promisify(fs.readdir)
+// // readdir('.').then(result=> console.log(result))
+// //
+// async function init() {
+//  const result = await readdir('./');
+//  console.log(result);
+// }
+// init();
 /*=========================================================*/
 // Express Module
 
-app.get('/routeOne',(req,res)=>{
-    fs.readFile('students.json', (err, content) => {
-    res.write(content);
-    res.end();
-});
-})
+// app.get('/routeOne',(req,res)=>{
+//     fs.readFile('students.json', (err, content) => {
+//     res.write(content);
+//     res.end();
+// });
+// })
 
-app.post('/routeOne',(req,res)=>{
+// app.post('/routeOne',(req,res)=>{
     
-    res.json(req.body)
-})
-app.get('/routeTwo',(req,res)=>{
-    res.send("<h1>Hello Route Two</h1>")
-})
+//     res.json(req.body)
+// })
+// app.get('/routeTwo',(req,res)=>{
+//     res.send("<h1>Hello Route Two</h1>")
+// })
 
 
 
-app.post('/TestRoutes', (req, res) => {
- res.send('Hello POST!');
-})
+// app.post('/TestRoutes', (req, res) => {
+//  res.send('Hello POST!');
+// })
 
-app.get('/TestHey', (req, res) => {
- fs.createReadStream(path.join(__dirname,
-'./src/static/index.html')).pipe(res);
-});
+// app.get('/TestHey', (req, res) => {
+//  fs.createReadStream(path.join(__dirname,
+// './src/static/index.html')).pipe(res);
+// });
 
 
 // app.listen('3000', () => {
 //  console.log('Example app listening on port 3000!');
 // });
 
+app.get('/',(req,res)=>{
+    res.send("Hello World");
+    
+})
 
 app.listen('8000',()=>{
     console.log("Server is running on port 8000")
@@ -112,8 +119,8 @@ app.use('/help', help);
 // const logger = require('./src/middlewares/logger');
 // app.use(logger)
 
-const morgan = require('morgan');
-app.use(morgan('common'));
+// const morgan = require('morgan');
+// app.use(morgan('common'));
 
 
 
