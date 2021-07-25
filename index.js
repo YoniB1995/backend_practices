@@ -7,7 +7,7 @@ const help = require('./src/modules/routes/help');
 const myLogger = require('./src/middlewares/logger')
 const userApp = require('./src/middlewares/access')
 const bodyParser = require('body-parser')
-
+const fetch = require('node-fetch')
 
 app.use(userApp)
 // app.use(myLogger)
@@ -105,6 +105,19 @@ const util = require('util')
 
 app.get('/',(req,res)=>{
     res.send("Hello World");
+    
+})
+
+app.get('/todos',(req,res)=>{
+    res.send({name:"yoni",age:25});
+    
+})
+
+app.get('/testFetch',async (req,res)=>{
+    
+    const fetchResp = await fetch('http://localhost:8000/todos')
+    const json = await fetchResp.json()
+    res.send(json)
     
 })
 
