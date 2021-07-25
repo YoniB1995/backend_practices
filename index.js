@@ -8,8 +8,10 @@ const myLogger = require('./src/middlewares/logger')
 const userApp = require('./src/middlewares/access')
 const bodyParser = require('body-parser')
 const fetch = require('node-fetch')
-
-app.use(userApp)
+const morgan = require('morgan')
+const newTry = require('./indexTwo')
+app.use(newTry)
+// app.use(userApp)
 // app.use(myLogger)
 // const funcFs = require('fs').promises
 // const chalk = require('chalk')
@@ -109,7 +111,7 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/todos',(req,res)=>{
-    res.send({name:"yoni",age:25});
+    res.json({name:"yoni",age:25});
     
 })
 
@@ -121,11 +123,34 @@ app.get('/testFetch',async (req,res)=>{
     
 })
 
+app.get('/testPost',async (req,res)=>{
+    try{
+     const fetchResp = await fetch('http://localhost:8000/',{
+         method:'POST',
+         headers: {
+             Accept: 'application/json',
+             'Content-Type':'application/json'
+         },
+         body:JSON.stringify({
+             name:'check',
+             age:26
+         })
+     });
+     const json = await fetchResp.json();
+     res.send(json);
+    } catch(e) {
+        res.send(e);
+    }
+   
+})
+
 app.listen('8000',()=>{
     console.log("Server is running on port 8000")
 })
-
+app.use(morgan('dev'))
 app.use('/help', help);
+
+
 
 //=================================================//
 // Middleware
