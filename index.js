@@ -148,10 +148,14 @@ app.listen('8000',()=>{
     console.log("Server is running on port 8000")
 })
 app.use(morgan('dev'))
-app.use('/help', help);
+// app.use('/help', help);
 
 
+const router = express.Router();
+const getIndex = require('./indexTwo')
 
+
+app.use('/Help',getIndex)
 //=================================================//
 // Middleware
 // const logger = require('./src/middlewares/logger');
