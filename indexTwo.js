@@ -17,12 +17,13 @@ app.listen('8500', ()=>{
 })
 
 router.get('/routeOne',(req,res)=>{
-    res.send("This is routeOne")
+    res.send("This is the first Route")
 })
 
 router.get('/routeTwo',(req,res)=>{
-    res.send("This is routeTwo")
+    res.send("This is the second Route")
 })
+
 
 
 module.exports =router

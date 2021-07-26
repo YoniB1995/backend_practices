@@ -151,9 +151,6 @@ app.use(morgan('dev'))
 // app.use('/help', help);
 
 
-const router = express.Router();
-const getIndex = require('./indexTwo')
-
 
 app.use('/Help',getIndex)
 //=================================================//
