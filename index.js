@@ -212,9 +212,9 @@ app.post('/Hello',(req,res)=>{
     res.send("New World")
 })
 
-app.listen('8000',()=>{
-    console.log("Logged to localhost:8000")
-})
+// app.listen('8000',()=>{
+//     console.log("Logged to localhost:8000")
+// })
 
 //=================================================//
 // דינאמי URL
@@ -230,14 +230,23 @@ app.listen('8000',()=>{
 
 // const ejs = require('./')
 
-// app.get('/:name',(req,res)=>{
-//     // res.render('index.ejs')
-//     res.render('index.ejs',{name:req.params.name})
-// })
+const mysql = require('mysql')
+require('dotenv').config();
 
-app.get('/:age',(req,res)=>{
-    res.render('index.ejs',{age:req.params.age} )
+
+const connection = mysql.createPool({
+    connectionLimit: 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: '',
+    database: process.env.DB_DATABASE
+});
+
+connection.query('SELECT * FROM `Persons`',(error,results,fields) => {
+    if (error) throw error;
+    console.log(results);
 })
+
 
 
 //=================================================//
