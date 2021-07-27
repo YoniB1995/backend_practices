@@ -9,8 +9,8 @@ const userApp = require('./src/middlewares/access')
 const bodyParser = require('body-parser')
 const fetch = require('node-fetch')
 const morgan = require('morgan')
-const newTry = require('./indexTwo')
-app.use(newTry)
+const {MongoClient} = require('mongodb');
+
 // app.use(userApp)
 // app.use(myLogger)
 // const funcFs = require('fs').promises
@@ -105,54 +105,95 @@ const util = require('util')
 //  console.log('Example app listening on port 3000!');
 // });
 
-app.get('/',(req,res)=>{
-    res.send("Hello World");
+// app.get('/',(req,res)=>{
+//     res.send("Hello World");
     
-})
+// })
 
-app.get('/todos',(req,res)=>{
-    res.json({name:"yoni",age:25});
+// app.get('/todos',(req,res)=>{
+//     res.json({name:"yoni",age:25});
     
-})
+// })
 
-app.get('/testFetch',async (req,res)=>{
+// app.get('/testFetch',async (req,res)=>{
     
-    const fetchResp = await fetch('http://localhost:8000/todos')
-    const json = await fetchResp.json()
-    res.send(json)
+//     const fetchResp = await fetch('http://localhost:8000/todos')
+//     const json = await fetchResp.json()
+//     res.send(json)
     
-})
+// })
 
-app.get('/testPost',async (req,res)=>{
-    try{
-     const fetchResp = await fetch('http://localhost:8000/',{
-         method:'POST',
-         headers: {
-             Accept: 'application/json',
-             'Content-Type':'application/json'
-         },
-         body:JSON.stringify({
-             name:'check',
-             age:26
-         })
-     });
-     const json = await fetchResp.json();
-     res.send(json);
-    } catch(e) {
-        res.send(e);
-    }
+// app.get('/testPost',async (req,res)=>{
+//     try{
+//      const fetchResp = await fetch('http://localhost:8000/',{
+//          method:'POST',
+//          headers: {
+//              Accept: 'application/json',
+//              'Content-Type':'application/json'
+//          },
+//          body:JSON.stringify({
+//              name:'check',
+//              age:26
+//          })
+//      });
+//      const json = await fetchResp.json();
+//      res.send(json);
+//     } catch(e) {
+//         res.send(e);
+//     }
    
-})
+// })
 
-app.listen('8000',()=>{
-    console.log("Server is running on port 8000")
-})
-app.use(morgan('dev'))
+// app.listen('8000',()=>{
+//     console.log("Server is running on port 8000")
+// })
+// app.use(morgan('dev'))
 // app.use('/help', help);
 
+// C:\Program Files\MongoDB\Server\5.0\bin
 
 
-app.use('/Help',getIndex)
+// app.use('/Help',getIndex)
+
+
+// async function main() {
+// 	const url = 'mongodb+srv://yoni:1234@cluster0.b7rbb.mongodb.net/yonib?retryWrites=true&w=majority'
+//     const client = new MongoClient(url);
+//     try {
+//     await client.connect();
+//     async function listDatabases(client){
+//     databasesList = await client.db().admin().listDatabases();
+ 
+//     console.log("Databases:");
+//     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+// };
+
+//     await listDatabases(client);
+// } catch (e) {
+//     console.error(e);
+// }finally {
+//     await client.close();
+// }
+
+// }
+
+// main().catch(console.error);
+
+
+
+// const connection = await mongo.connect(url);
+// const db = connection.db('yonib');
+// const collection = db.collection('students')
+
+
+
+//=================================================//
+
+// const url = 'mongodb+srv://yoni:1234@cluster0.b7rbb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+// const connection = await mongo.connect(url);
+// const db = connection.db('')
+
+
 //=================================================//
 // Middleware
 // const logger = require('./src/middlewares/logger');

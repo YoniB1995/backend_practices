@@ -1,0 +1,2 @@
+use("yonib")
+db.students.insertOne({name:"yoni"})

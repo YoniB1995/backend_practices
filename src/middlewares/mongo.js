@@ -5,7 +5,7 @@ const collection = db.collection('customers')
 
 
 
-module.exports= {url,connection,db,collection}
+// module.exports= {url,connection,db,collection}
 
 
 
