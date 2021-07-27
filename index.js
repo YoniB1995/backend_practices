@@ -204,6 +204,10 @@ app.get('/Hello',(req,res)=>{
     res.send("Hello World")
 })
 
+const user = require('./src/modules/tests/user')
+app.use('/user',user)
+
+
 app.post('/Hello',(req,res)=>{
     res.send("New World")
 })
@@ -212,7 +216,29 @@ app.listen('8000',()=>{
     console.log("Logged to localhost:8000")
 })
 
+//=================================================//
+// דינאמי URL
 
+
+
+
+
+
+
+//=================================================//
+// ejs
+
+// const ejs = require('./')
+
+app.get('/:name',(req,res)=>{
+    // res.render('index.ejs')
+    res.render('index.ejs',{name:req.params.name})
+})
+
+
+
+
+//=================================================//
 
 // const fileName = 'students.json'
 // const initialTodos = [];

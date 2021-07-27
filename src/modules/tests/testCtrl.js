@@ -1,3 +1,4 @@
+const fs = require('fs');
 
 const getParamsTest = (req,res) =>{
     try{
@@ -9,6 +10,17 @@ const getParamsTest = (req,res) =>{
     }
 }
 
-testRouter.get('/')
+const postParamsTest = (req,res) => {
+    try{
+        const data = `{
+            "us
+        }`
+        fs.promises.writeFile('../../users.json',)
+        console.log("data sent successfully");
+    }
+    catch(error) {
+        res.send({error:error,message : "bad request"})
+    }
+}  
 
 module.exports = { getParamsTest}
