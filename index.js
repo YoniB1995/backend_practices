@@ -230,12 +230,14 @@ app.listen('8000',()=>{
 
 // const ejs = require('./')
 
-app.get('/:name',(req,res)=>{
-    // res.render('index.ejs')
-    res.render('index.ejs',{name:req.params.name})
+// app.get('/:name',(req,res)=>{
+//     // res.render('index.ejs')
+//     res.render('index.ejs',{name:req.params.name})
+// })
+
+app.get('/:age',(req,res)=>{
+    res.render('index.ejs',{age:req.params.age} )
 })
-
-
 
 
 //=================================================//
