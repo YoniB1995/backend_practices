@@ -196,12 +196,21 @@ const util = require('util')
 
 //=================================================//
 // Middleware
-// const logger = require('./src/middlewares/logger');
-// app.use(logger)
+const logger = require('./src/middlewares/logger');
+app.use(logger)
 
-// const morgan = require('morgan');
-// app.use(morgan('common'));
+app.use(morgan('common'));
+app.get('/Hello',(req,res)=>{
+    res.send("Hello World")
+})
 
+app.post('/Hello',(req,res)=>{
+    res.send("New World")
+})
+
+app.listen('8000',()=>{
+    console.log("Logged to localhost:8000")
+})
 
 
 
