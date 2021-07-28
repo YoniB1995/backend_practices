@@ -10,6 +10,7 @@ const bodyParser = require('body-parser')
 const fetch = require('node-fetch')
 const morgan = require('morgan')
 const {MongoClient} = require('mongodb');
+require('./database/mySQL')
 
 // app.use(userApp)
 // app.use(myLogger)
@@ -196,21 +197,21 @@ const util = require('util')
 
 //=================================================//
 // Middleware
-const logger = require('./src/middlewares/logger');
-app.use(logger)
+// const logger = require('./src/middlewares/logger');
+// app.use(logger)
 
-app.use(morgan('common'));
-app.get('/Hello',(req,res)=>{
-    res.send("Hello World")
-})
+// app.use(morgan('common'));
+// app.get('/Hello',(req,res)=>{
+//     res.send("Hello World")
+// })
 
-const user = require('./src/modules/tests/user')
-app.use('/user',user)
+// const user = require('./src/modules/tests/user')
+// app.use('/user',user)
 
 
-app.post('/Hello',(req,res)=>{
-    res.send("New World")
-})
+// app.post('/Hello',(req,res)=>{
+//     res.send("New World")
+// })
 
 // app.listen('8000',()=>{
 //     console.log("Logged to localhost:8000")
@@ -230,22 +231,9 @@ app.post('/Hello',(req,res)=>{
 
 // const ejs = require('./')
 
-const mysql = require('mysql')
-require('dotenv').config();
 
 
-const connection = mysql.createPool({
-    connectionLimit: 10,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: '',
-    database: process.env.DB_DATABASE
-});
 
-connection.query('SELECT * FROM `Persons`',(error,results,fields) => {
-    if (error) throw error;
-    console.log(results);
-})
 
 
 
